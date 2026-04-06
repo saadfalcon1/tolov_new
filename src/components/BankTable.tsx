@@ -60,7 +60,7 @@ export const BankTable = ({ month }: { month: MonthKey }) => {
                   className="text-left p-3 text-xs text-muted-foreground font-medium cursor-pointer hover:text-foreground transition-colors"
                   onClick={() => handleSort("name")}
                 >
-                  Bank nomi <SortIcon col="name" />
+                  Tashkilot nomi<SortIcon col="name" />
                 </th>
                 <th className="text-left p-3 text-xs text-muted-foreground font-medium">Turi</th>
                 <th

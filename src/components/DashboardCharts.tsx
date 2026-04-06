@@ -55,7 +55,7 @@ export const TopBanksChart = ({ month }: { month: MonthKey }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}
     >
-      <h3 className="text-lg font-bold text-foreground mb-4">TOP 10 bank</h3>
+      <h3 className="text-lg font-bold text-foreground mb-4">TOP 10 to'lov tashkilotlari</h3>
       <ResponsiveContainer width="100%" height={320}>
         <BarChart data={top10} layout="vertical" margin={{ left: 10, right: 20 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
@@ -175,21 +175,6 @@ export const CategoryCompareChart = ({ month }: { month: MonthKey }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.4 }}
     >
-      <h3 className="text-lg font-bold text-foreground mb-4">Davlat va xususiy banklarning qiyosiy tahlili</h3>
-      <ResponsiveContainer width="100%" height={280}>
-        <RadarChart data={radarData}>
-          <PolarGrid stroke="hsl(var(--border))" />
-          <PolarAngleAxis dataKey="metric" tick={{ fill: "hsl(var(--foreground))", fontSize: 12 }} />
-          <PolarRadiusAxis domain={[0, 100]} tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 10 }} />
-          <Radar name="Davlat" dataKey="davlat" stroke="hsl(160, 70%, 45%)" fill="hsl(160, 70%, 45%)" fillOpacity={0.2} />
-          <Radar name="Xususiy" dataKey="xususiy" stroke="hsl(210, 90%, 55%)" fill="hsl(210, 90%, 55%)" fillOpacity={0.2} />
-          <Tooltip content={<CustomTooltip />} />
-        </RadarChart>
-      </ResponsiveContainer>
-      <div className="flex justify-center gap-6 mt-2 text-sm">
-        <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full" style={{ background: "hsl(160, 70%, 45%)" }} /> Davlat</span>
-        <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full" style={{ background: "hsl(210, 90%, 55%)" }} /> Xususiy</span>
-      </div>
     </motion.div>
   );
 };

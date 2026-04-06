@@ -69,7 +69,7 @@ export const DashboardHeader = ({ month }: { month: MonthKey }) => {
         className="space-y-2"
       >
         <h1 className="text-4xl font-bold gradient-text-primary tracking-tight">
-          Tijorat banklarining mobil ilovalari tahlili
+          To'lov tashkilotlarining mobil ilovalari tahlili
         </h1>
         <p className="text-base text-muted-foreground">
           Google Play va App Store ma'lumotlari asosida
