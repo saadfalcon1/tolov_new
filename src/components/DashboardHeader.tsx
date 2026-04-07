@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { getCombinedScores, getGPData, getASData, MonthKey } from "@/data/bankData";
 import { Download, Trophy, Users, Building2 } from "lucide-react";
 import logo from "@/components/image/logo.png";
+
 const GPIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
   <svg viewBox="0 0 24 24" className={className} fill="none">
     <path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594z" fill="#EA4335"/>
@@ -41,10 +42,10 @@ export const DashboardHeader = ({ month }: { month: MonthKey }) => {
       label: "Jami baholagan foydalanuvchilar",
       value: totalRaters.toLocaleString(),
       sub: (
-         <span className="flex items-center justify-center gap-4 flex-wrap text-base">
-           <span className="inline-flex items-center gap-1.5"><GPIcon className="w-5 h-5" /> {totalGPRaters.toLocaleString()}</span>
-           <span className="inline-flex items-center gap-1.5"><ASIcon className="w-5 h-5" /> {totalASRaters.toLocaleString()}</span>
-         </span>
+        <span className="flex items-center justify-center gap-4 flex-wrap text-base">
+          <span className="inline-flex items-center gap-1.5"><GPIcon className="w-5 h-5" /> {totalGPRaters.toLocaleString()}</span>
+          <span className="inline-flex items-center gap-1.5"><ASIcon className="w-5 h-5" /> {totalASRaters.toLocaleString()}</span>
+        </span>
       ),
     },
     {
@@ -107,3 +108,4 @@ export const DashboardHeader = ({ month }: { month: MonthKey }) => {
       </div>
     </div>
   );
+};
