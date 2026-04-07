@@ -68,20 +68,23 @@ export const DashboardHeader = ({ month }: { month: MonthKey }) => {
         animate={{ opacity: 1, y: 0 }}
         className="space-y-2"
       >
-        <div className="flex items-center gap-4">
+        <div className="flex items-start justify-between gap-4">
+          <div className="space-y-2">
+            <h1 className="text-4xl font-bold gradient-text-primary tracking-tight">
+              To'lov tashkilotlarining mobil ilovalari tahlili
+            </h1>
+            <p className="text-base text-muted-foreground">
+              Google Play va App Store ma'lumotlari asosida
+            </p>
+          </div>
           <img
             src={logo}
             alt="Reyting Agentligi"
-            className="h-16 w-auto object-contain flex-shrink-0"
+            className="h-16 w-auto object-contain flex-shrink-0 mt-3"
           />
-          <h1 className="text-4xl font-bold gradient-text-primary tracking-tight">
-            To'lov tashkilotlarining mobil ilovalari tahlili
-          </h1>
         </div>
-        <p className="text-base text-muted-foreground">
-          Google Play va App Store ma'lumotlari asosida
-        </p>
       </motion.div>
+
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {stats.map((stat, i) => (
           <motion.div
@@ -91,10 +94,10 @@ export const DashboardHeader = ({ month }: { month: MonthKey }) => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1 * i }}
           >
-             <div className="flex items-center justify-center gap-2 mb-3">
-               <stat.icon className="w-5 h-5 text-primary" />
-               <span className="text-sm text-muted-foreground">{stat.label}</span>
-             </div>
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <stat.icon className="w-5 h-5 text-primary" />
+              <span className="text-sm text-muted-foreground">{stat.label}</span>
+            </div>
             <p className="text-3xl font-bold text-foreground text-center">{stat.value}</p>
             {stat.sub && (
               <div className="text-base text-muted-foreground font-mono mt-2 text-center">{stat.sub}</div>
@@ -104,4 +107,3 @@ export const DashboardHeader = ({ month }: { month: MonthKey }) => {
       </div>
     </div>
   );
-};
