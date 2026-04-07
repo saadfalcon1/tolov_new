@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { getCombinedScores, getGPData, getASData, MonthKey } from "@/data/bankData";
 import { Download, Trophy, Users, Building2 } from "lucide-react";
-
+import logo from "@/components/image/logo.png";
 const GPIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
   <svg viewBox="0 0 24 24" className={className} fill="none">
     <path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594z" fill="#EA4335"/>
@@ -68,14 +68,20 @@ export const DashboardHeader = ({ month }: { month: MonthKey }) => {
         animate={{ opacity: 1, y: 0 }}
         className="space-y-2"
       >
-        <h1 className="text-4xl font-bold gradient-text-primary tracking-tight">
-          To'lov tashkilotlarining mobil ilovalari tahlili
-        </h1>
+        <div className="flex items-center gap-4">
+          <img
+            src={logo}
+            alt="Reyting Agentligi"
+            className="h-16 w-auto object-contain flex-shrink-0"
+          />
+          <h1 className="text-4xl font-bold gradient-text-primary tracking-tight">
+            To'lov tashkilotlarining mobil ilovalari tahlili
+          </h1>
+        </div>
         <p className="text-base text-muted-foreground">
           Google Play va App Store ma'lumotlari asosida
         </p>
       </motion.div>
-
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {stats.map((stat, i) => (
           <motion.div
