@@ -39,11 +39,12 @@ export interface AppStoreBankData {
   category: string;
 }
 
-export type MonthKey = "february" | "march";
+export type MonthKey = "february" | "march" | "april";
 
 export const months: { key: MonthKey; label: string }[] = [
   { key: "february", label: "Fevral" },
   { key: "march", label: "Mart" },
+  { key: "april", label: "Aprel" },
 ];
 
 // ==================== FEVRAL ====================
@@ -102,8 +103,8 @@ const bankDataMar: BankData[] = [
   { name: "IWON", appId: "Iwon (Google Play)", totalRaters: 56, ratings: { five: 30, four: 11, three: 8, two: 4, one: 3 }, averageRating: 3.75, horizontalScore: 75, verticalScore: 0.06, verticalScorePercent: 1.11, volumeValue: 0, lastMonthDownloads: 19_211, lastMonthRaters: 39, lastMonthComments: 17, activityScore: 56.79, finalScore: 44.3, category: "To'lov tashkiloti" },
 ];
 
-const appStoreDataMar: AppStoreBankData[] =  [
-    { name: "SELLO SUPERAPP", appId: "Sello SuperApp", totalRaters: 467, rating5: 398, rating4: 37, rating3: 14, rating2: 9, rating1: 9, averageRating: 4.52, horizontalScore: 90.4, verticalScore: 0.43, verticalScorePercent: 8.54, volumeValue: 0, totalValue: 0, lastMonthDownloads: 17_283, lastMonthRaters: 7, lastMonthReviews: 60, activityScore: 56.61, finalScore: 51.85, category: "To'lov tashkiloti" },
+const appStoreDataMar: AppStoreBankData[] = [
+  { name: "SELLO SUPERAPP", appId: "Sello SuperApp", totalRaters: 467, rating5: 398, rating4: 37, rating3: 14, rating2: 9, rating1: 9, averageRating: 4.52, horizontalScore: 90.4, verticalScore: 0.43, verticalScorePercent: 8.54, volumeValue: 0, totalValue: 0, lastMonthDownloads: 17_283, lastMonthRaters: 7, lastMonthReviews: 60, activityScore: 56.61, finalScore: 51.85, category: "To'lov tashkiloti" },
   { name: "CLICK", appId: "Click Up (App Store)", totalRaters: 98_473, rating5: 91_582, rating4: 2_954, rating3: 984, rating2: 984, rating1: 1_969, averageRating: 4.83, horizontalScore: 96.6, verticalScore: 4.76, verticalScorePercent: 95.17, volumeValue: 0, totalValue: 0, lastMonthDownloads: 123_662, lastMonthRaters: 2_060, lastMonthReviews: 52, activityScore: 91.79, finalScore: 94.52, category: "To'lov tashkiloti" },
   { name: "OSON", appId: "Oson (App Store)", totalRaters: 659, rating5: 332, rating4: 131, rating3: 98, rating2: 52, rating1: 46, averageRating: 3.76, horizontalScore: 75.2, verticalScore: 0.58, verticalScorePercent: 11.65, volumeValue: 0, totalValue: 0, lastMonthDownloads: 83_013, lastMonthRaters: 17, lastMonthReviews: 22, activityScore: 59.2, finalScore: 48.68, category: "To'lov tashkiloti" },
   { name: "PAYME", appId: "Payme (App Store)", totalRaters: 352_494, rating5: 327_823, rating4: 10_574, rating3: 3_524, rating2: 3_524, rating1: 7_049, averageRating: 4.85, horizontalScore: 97, verticalScore: 4.93, verticalScorePercent: 98.6, volumeValue: 0, totalValue: 0, lastMonthDownloads: 97_739, lastMonthRaters: 9_735, lastMonthReviews: 43, activityScore: 91.75, finalScore: 95.78, category: "To'lov tashkiloti" },
@@ -116,23 +117,305 @@ const appStoreDataMar: AppStoreBankData[] =  [
   { name: "PAYWAY", appId: "PayWay (App Store)", totalRaters: 1_176, rating5: 1_001, rating4: 94, rating3: 35, rating2: 23, rating1: 23, averageRating: 4.72, horizontalScore: 94.4, verticalScore: 0.95, verticalScorePercent: 19.04, volumeValue: 0, totalValue: 0, lastMonthDownloads: 79_392, lastMonthRaters: 33, lastMonthReviews: 47, activityScore: 67.11, finalScore: 60.18, category: "To'lov tashkiloti" },
   { name: "PAYNET", appId: "Paynet (App Store)", totalRaters: 9_508, rating5: 8_083, rating4: 760, rating3: 285, rating2: 190, rating1: 190, averageRating: 4.58, horizontalScore: 91.6, verticalScore: 3.28, verticalScorePercent: 65.54, volumeValue: 0, totalValue: 0, lastMonthDownloads: 199_517, lastMonthRaters: 295, lastMonthReviews: 4, activityScore: 66.94, finalScore: 74.69, category: "To'lov tashkiloti" },
   { name: "MILLIYPAY", appId: "MilliyPay (App Store)", totalRaters: 72, rating5: 63, rating4: 5, rating3: 2, rating2: 1, rating1: 1, averageRating: 4.79, horizontalScore: 95.8, verticalScore: 0.07, verticalScorePercent: 1.42, volumeValue: 0, totalValue: 0, lastMonthDownloads: 23_465, lastMonthRaters: 0, lastMonthReviews: 6, activityScore: 39.98, finalScore: 45.73, category: "To'lov tashkiloti" },
-  { name: "LIMON PAY", appId: "Limon Pay (App Store)", totalRaters: 41, rating5: 22, rating4: 8, rating3: 6, rating2: 3, rating1: 2, averageRating: 3.63, horizontalScore: 72.6, verticalScore: 0.04, verticalScorePercent: 0.81, volumeValue: 0, totalValue: 0, lastMonthDownloads: 19_316, lastMonthRaters: 1, lastMonthReviews: 4, activityScore: 36.33, finalScore: 36.58, category: "To'lov tashkiloti" }, { name: "BEEPUL", appId: "Beepul (App Store)", totalRaters: 22_699, rating5: 21_114, rating4: 680, rating3: 226, rating2: 226, rating1: 453, averageRating: 4.82, horizontalScore: 96.4, verticalScore: 4.1, verticalScorePercent: 81.95, volumeValue: 0, totalValue: 0, lastMonthDownloads: 88_527, lastMonthRaters: 892, lastMonthReviews: 44, activityScore: 88.68, finalScore: 89.01, category: "To'lov tashkiloti" },
+  { name: "LIMON PAY", appId: "Limon Pay (App Store)", totalRaters: 41, rating5: 22, rating4: 8, rating3: 6, rating2: 3, rating1: 2, averageRating: 3.63, horizontalScore: 72.6, verticalScore: 0.04, verticalScorePercent: 0.81, volumeValue: 0, totalValue: 0, lastMonthDownloads: 19_316, lastMonthRaters: 1, lastMonthReviews: 4, activityScore: 36.33, finalScore: 36.58, category: "To'lov tashkiloti" },
+  { name: "BEEPUL", appId: "Beepul (App Store)", totalRaters: 22_699, rating5: 21_114, rating4: 680, rating3: 226, rating2: 226, rating1: 453, averageRating: 4.82, horizontalScore: 96.4, verticalScore: 4.1, verticalScorePercent: 81.95, volumeValue: 0, totalValue: 0, lastMonthDownloads: 88_527, lastMonthRaters: 892, lastMonthReviews: 44, activityScore: 88.68, finalScore: 89.01, category: "To'lov tashkiloti" },
 ];
 
-// Monthly data store
+// ==================== APREL ====================
+// Eslatma: manba ma'lumotlarda 1 yulduz va 5 yulduz ustunlari almashib qolgan edi — to'g'irlandi.
+
+const bankDataApr: BankData[] = [
+  {
+    name: "PAYME",
+    appId: "Payme (Google Play)",
+    totalRaters: 769_678,
+    ratings: { five: 677_320, four: 15_393, three: 19_241, two: 38_483, one: 19_241 },
+    averageRating: 4.71, horizontalScore: 94.2, verticalScore: 4.97, verticalScorePercent: 99.35,
+    volumeValue: 0, lastMonthDownloads: 510_027, lastMonthRaters: 15_641, lastMonthComments: 1_296,
+    activityScore: 99.21, finalScore: 97.59, category: "To'lov tashkiloti",
+  },
+  {
+    name: "CLICK",
+    appId: "CLICK (Google Play)",
+    totalRaters: 697_258,
+    ratings: { five: 613_589, four: 13_945, three: 17_431, two: 34_862, one: 17_431 },
+    averageRating: 4.76, horizontalScore: 95.2, verticalScore: 4.96, verticalScorePercent: 99.29,
+    volumeValue: 0, lastMonthDownloads: 548_752, lastMonthRaters: 10_520, lastMonthComments: 869,
+    activityScore: 99.01, finalScore: 97.83, category: "To'lov tashkiloti",
+  },
+  {
+    name: "ALIF",
+    appId: "Alif Mobi (Google Play)",
+    totalRaters: 302_696,
+    ratings: { five: 266_375, four: 6_053, three: 7_567, two: 15_134, one: 7_567 },
+    averageRating: 4.75, horizontalScore: 95, verticalScore: 4.92, verticalScorePercent: 98.38,
+    volumeValue: 0, lastMonthDownloads: 375_138, lastMonthRaters: 17_501, lastMonthComments: 1_366,
+    activityScore: 99.13, finalScore: 97.5, category: "To'lov tashkiloti",
+  },
+  {
+    name: "PAYNET",
+    appId: "Paynet (Google Play)",
+    totalRaters: 178_477,
+    ratings: { five: 162_416, four: 2_677, three: 2_677, two: 6_246, one: 4_461 },
+    averageRating: 4.89, horizontalScore: 97.8, verticalScore: 4.86, verticalScorePercent: 97.27,
+    volumeValue: 0, lastMonthDownloads: 461_279, lastMonthRaters: 8_522, lastMonthComments: 1_472,
+    activityScore: 99.03, finalScore: 98.03, category: "To'lov tashkiloti",
+  },
+  {
+    name: "BEEPUL",
+    appId: "Beepul (Google Play)",
+    totalRaters: 147_065,
+    ratings: { five: 129_419, four: 2_941, three: 3_676, two: 7_353, one: 3_676 },
+    averageRating: 4.73, horizontalScore: 94.6, verticalScore: 4.84, verticalScorePercent: 96.71,
+    volumeValue: 0, lastMonthDownloads: 520_023, lastMonthRaters: 11_590, lastMonthComments: 505,
+    activityScore: 98.75, finalScore: 96.69, category: "To'lov tashkiloti",
+  },
+  {
+    name: "OSON",
+    appId: "Oson (Google Play)",
+    totalRaters: 92_764,
+    ratings: { five: 81_633, four: 1_855, three: 2_319, two: 4_638, one: 2_319 },
+    averageRating: 4.7, horizontalScore: 94, verticalScore: 4.74, verticalScorePercent: 94.89,
+    volumeValue: 0, lastMonthDownloads: 188_898, lastMonthRaters: 3_136, lastMonthComments: 274,
+    activityScore: 96.94, finalScore: 95.28, category: "To'lov tashkiloti",
+  },
+  {
+    name: "ATTO",
+    appId: "ATTO (Google Play)",
+    totalRaters: 51_673,
+    ratings: { five: 42_891, four: 1_291, three: 1_808, two: 4_133, one: 1_550 },
+    averageRating: 4.54, horizontalScore: 90.8, verticalScore: 4.56, verticalScorePercent: 91.18,
+    volumeValue: 0, lastMonthDownloads: 64_541, lastMonthRaters: 1_435, lastMonthComments: 339,
+    activityScore: 94.48, finalScore: 92.15, category: "To'lov tashkiloti",
+  },
+  {
+    name: "TEZPAY",
+    appId: "TezPay (Google Play)",
+    totalRaters: 8_349,
+    ratings: { five: 5_430, four: 417, three: 667, two: 1_502, one: 333 },
+    averageRating: 4.26, horizontalScore: 85.2, verticalScore: 3.13, verticalScorePercent: 62.54,
+    volumeValue: 0, lastMonthDownloads: 20_530, lastMonthRaters: 498, lastMonthComments: 120,
+    activityScore: 85.33, finalScore: 77.69, category: "To'lov tashkiloti",
+  },
+  {
+    name: "MILLIYPAY",
+    appId: "MilliyPay (Google Play)",
+    totalRaters: 6_474,
+    ratings: { five: 5_376, four: 161, three: 226, two: 517, one: 194 },
+    averageRating: 4.53, horizontalScore: 90.6, verticalScore: 2.82, verticalScorePercent: 56.42,
+    volumeValue: 0, lastMonthDownloads: 40_480, lastMonthRaters: 491, lastMonthComments: 137,
+    activityScore: 88.43, finalScore: 78.48, category: "To'lov tashkiloti",
+  },
+  {
+    name: "PLUM",
+    appId: "Plum Uzcard (Google Play)",
+    totalRaters: 5_325,
+    ratings: { five: 4_421, four: 133, three: 186, two: 426, one: 159 },
+    averageRating: 4.58, horizontalScore: 91.6, verticalScore: 2.58, verticalScorePercent: 51.57,
+    volumeValue: 0, lastMonthDownloads: 44_080, lastMonthRaters: 377, lastMonthComments: 195,
+    activityScore: 87.99, finalScore: 77.05, category: "To'lov tashkiloti",
+  },
+  {
+    name: "PAYWAY",
+    appId: "PayWay (Google Play)",
+    totalRaters: 3_663,
+    ratings: { five: 1_833, four: 293, three: 549, two: 732, one: 256 },
+    averageRating: 3.72, horizontalScore: 74.4, verticalScore: 2.11, verticalScorePercent: 42.28,
+    volumeValue: 0, lastMonthDownloads: 39_269, lastMonthRaters: 253, lastMonthComments: 181,
+    activityScore: 85.05, finalScore: 67.24, category: "To'lov tashkiloti",
+  },
+  {
+    name: "SELLO SUPERAPP",
+    appId: "Sello (Google Play)",
+    totalRaters: 2_682,
+    ratings: { five: 2_361, four: 53, three: 67, two: 134, one: 67 },
+    averageRating: 4.76, horizontalScore: 95.2, verticalScore: 1.75, verticalScorePercent: 34.91,
+    volumeValue: 0, lastMonthDownloads: 47_304, lastMonthRaters: 207, lastMonthComments: 192,
+    activityScore: 84.31, finalScore: 71.47, category: "To'lov tashkiloti",
+  },
+  {
+    name: "APAY",
+    appId: "A-Pay (Google Play)",
+    totalRaters: 996,
+    ratings: { five: 350, four: 119, three: 199, two: 199, one: 129 },
+    averageRating: 3.23, horizontalScore: 64.6, verticalScore: 0.83, verticalScorePercent: 16.61,
+    volumeValue: 0, lastMonthDownloads: 29_803, lastMonthRaters: 28, lastMonthComments: 34,
+    activityScore: 61.59, finalScore: 47.6, category: "To'lov tashkiloti",
+  },
+  {
+    name: "LIMON PAY",
+    appId: "Limon Pay (Google Play)",
+    totalRaters: 379,
+    ratings: { five: 192, four: 30, three: 56, two: 75, one: 26 },
+    averageRating: 3.84, horizontalScore: 76.8, verticalScore: 0.35, verticalScorePercent: 7.05,
+    volumeValue: 0, lastMonthDownloads: 5_230, lastMonthRaters: 80, lastMonthComments: 14,
+    activityScore: 51.3, finalScore: 45.05, category: "To'lov tashkiloti",
+  },
+  {
+    name: "IWON",
+    appId: "Iwon (Google Play)",
+    totalRaters: 56,
+    ratings: { five: 30, four: 4, three: 8, two: 11, one: 3 },
+    averageRating: 3.75, horizontalScore: 75, verticalScore: 0.06, verticalScorePercent: 1.11,
+    volumeValue: 0, lastMonthDownloads: 22_335, lastMonthRaters: 83, lastMonthComments: 42,
+    activityScore: 69.28, finalScore: 48.46, category: "To'lov tashkiloti",
+  },
+];
+
+const appStoreDataApr: AppStoreBankData[] = [
+  {
+    name: "CLICK",
+    appId: "Click Up (App Store)",
+    totalRaters: 100_867,
+    rating5: 93_808, rating4: 1_008, rating3: 1_008, rating2: 3_026, rating1: 2_017,
+    averageRating: 4.82, horizontalScore: 96.4, verticalScore: 4.76, verticalScorePercent: 95.28,
+    volumeValue: 0, totalValue: 0, lastMonthDownloads: 91_368, lastMonthRaters: 2_294, lastMonthReviews: 53,
+    activityScore: 91.59, finalScore: 94.42, category: "To'lov tashkiloti",
+  },
+  {
+    name: "OSON",
+    appId: "Oson (App Store)",
+    totalRaters: 664,
+    rating5: 334, rating4: 53, rating3: 99, rating2: 132, rating1: 46,
+    averageRating: 3.76, horizontalScore: 75.2, verticalScore: 0.59, verticalScorePercent: 11.72,
+    volumeValue: 0, totalValue: 0, lastMonthDownloads: 85_854, lastMonthRaters: 17, lastMonthReviews: 42,
+    activityScore: 63.27, finalScore: 50.06, category: "To'lov tashkiloti",
+  },
+  {
+    name: "PAYME",
+    appId: "Payme (App Store)",
+    totalRaters: 354_441,
+    rating5: 329_632, rating4: 3_544, rating3: 3_544, rating2: 10_633, rating1: 7_088,
+    averageRating: 4.85, horizontalScore: 97, verticalScore: 4.93, verticalScorePercent: 98.61,
+    volumeValue: 0, totalValue: 0, lastMonthDownloads: 148_824, lastMonthRaters: 14_174, lastMonthReviews: 63,
+    activityScore: 94.12, finalScore: 96.58, category: "To'lov tashkiloti",
+  },
+  {
+    name: "ALIF",
+    appId: "Alif Mobi (App Store)",
+    totalRaters: 43_898,
+    rating5: 40_829, rating4: 438, rating3: 438, rating2: 1_316, rating1: 877,
+    averageRating: 4.84, horizontalScore: 96.8, verticalScore: 4.49, verticalScorePercent: 89.77,
+    volumeValue: 0, totalValue: 0, lastMonthDownloads: 6_380, lastMonthRaters: 179, lastMonthReviews: 56,
+    activityScore: 68.36, finalScore: 84.98, category: "To'lov tashkiloti",
+  },
+  {
+    name: "PLUM",
+    appId: "Plum UZ (App Store)",
+    totalRaters: 560,
+    rating5: 478, rating4: 11, rating3: 16, rating2: 44, rating1: 11,
+    averageRating: 4.68, horizontalScore: 93.6, verticalScore: 0.5, verticalScorePercent: 10.07,
+    volumeValue: 0, totalValue: 0, lastMonthDownloads: 140_522, lastMonthRaters: 16, lastMonthReviews: 59,
+    activityScore: 65.29, finalScore: 56.32, category: "To'lov tashkiloti",
+  },
+  {
+    name: "ATTO",
+    appId: "Atto (App Store)",
+    totalRaters: 21_635,
+    rating5: 18_392, rating4: 432, rating3: 649, rating2: 1_730, rating1: 432,
+    averageRating: 4.76, horizontalScore: 95.2, verticalScore: 4.06, verticalScorePercent: 81.23,
+    volumeValue: 0, totalValue: 0, lastMonthDownloads: 11_151, lastMonthRaters: 619, lastMonthReviews: 17,
+    activityScore: 72.7, finalScore: 83.04, category: "To'lov tashkiloti",
+  },
+  {
+    name: "IWON",
+    appId: "Iwon (App Store)",
+    totalRaters: 14,
+    rating5: 14, rating4: 0, rating3: 0, rating2: 0, rating1: 0,
+    averageRating: 4.93, horizontalScore: 98.6, verticalScore: 0.01, verticalScorePercent: 0.28,
+    volumeValue: 0, totalValue: 0, lastMonthDownloads: 11_020, lastMonthRaters: 1, lastMonthReviews: 0,
+    activityScore: 23.26, finalScore: 40.71, category: "To'lov tashkiloti",
+  },
+  {
+    name: "APAY",
+    appId: "A-Pay (App Store)",
+    totalRaters: 59,
+    rating5: 43, rating4: 2, rating3: 4, rating2: 8, rating1: 2,
+    averageRating: 4.24, horizontalScore: 84.8, verticalScore: 0.06, verticalScorePercent: 1.17,
+    volumeValue: 0, totalValue: 0, lastMonthDownloads: 6_377, lastMonthRaters: 0, lastMonthReviews: 0,
+    activityScore: 18.68, finalScore: 34.88, category: "To'lov tashkiloti",
+  },
+  {
+    name: "TEZPAY",
+    appId: "TezPay (App Store)",
+    totalRaters: 114,
+    rating5: 98, rating4: 2, rating3: 3, rating2: 9, rating1: 2,
+    averageRating: 4.62, horizontalScore: 92.4, verticalScore: 0.11, verticalScorePercent: 2.23,
+    volumeValue: 0, totalValue: 0, lastMonthDownloads: 50_961, lastMonthRaters: 3, lastMonthReviews: 20,
+    activityScore: 53.55, finalScore: 49.39, category: "To'lov tashkiloti",
+  },
+  {
+    name: "PAYWAY",
+    appId: "PayWay (App Store)",
+    totalRaters: 1_175,
+    rating5: 1_000, rating4: 23, rating3: 35, rating2: 94, rating1: 23,
+    averageRating: 4.72, horizontalScore: 94.4, verticalScore: 0.95, verticalScorePercent: 19.03,
+    volumeValue: 0, totalValue: 0, lastMonthDownloads: 119_978, lastMonthRaters: 4, lastMonthReviews: 30,
+    activityScore: 58.28, finalScore: 57.24, category: "To'lov tashkiloti",
+  },
+  {
+    name: "PAYNET",
+    appId: "Paynet (App Store)",
+    totalRaters: 15_934,
+    rating5: 13_546, rating4: 318, rating3: 478, rating2: 1_274, rating1: 318,
+    averageRating: 4.69, horizontalScore: 93.8, verticalScore: 3.81, verticalScorePercent: 76.12,
+    volumeValue: 0, totalValue: 0, lastMonthDownloads: 138_743, lastMonthRaters: 629, lastMonthReviews: 52,
+    activityScore: 88.89, finalScore: 86.27, category: "To'lov tashkiloti",
+  },
+  {
+    name: "MILLIYPAY",
+    appId: "MilliyPay (App Store)",
+    totalRaters: 73,
+    rating5: 70, rating4: 0, rating3: 0, rating2: 2, rating1: 1,
+    averageRating: 4.82, horizontalScore: 96.4, verticalScore: 0.07, verticalScorePercent: 1.44,
+    volumeValue: 0, totalValue: 0, lastMonthDownloads: 25_684, lastMonthRaters: 2, lastMonthReviews: 0,
+    activityScore: 28.56, finalScore: 42.13, category: "To'lov tashkiloti",
+  },
+  {
+    name: "LIMON PAY",
+    appId: "Limon Pay (App Store)",
+    totalRaters: 42,
+    rating5: 23, rating4: 3, rating3: 6, rating2: 8, rating1: 2,
+    averageRating: 3.67, horizontalScore: 73.4, verticalScore: 0.04, verticalScorePercent: 0.83,
+    volumeValue: 0, totalValue: 0, lastMonthDownloads: 7_242, lastMonthRaters: 0, lastMonthReviews: 2,
+    activityScore: 25.27, finalScore: 33.17, category: "To'lov tashkiloti",
+  },
+  {
+    name: "BEEPUL",
+    appId: "Beepul (App Store)",
+    totalRaters: 23_544,
+    rating5: 21_898, rating4: 235, rating3: 235, rating2: 706, rating1: 470,
+    averageRating: 4.81, horizontalScore: 96.2, verticalScore: 4.12, verticalScorePercent: 82.48,
+    volumeValue: 0, totalValue: 0, lastMonthDownloads: 167_375, lastMonthRaters: 891, lastMonthReviews: 25,
+    activityScore: 86.15, finalScore: 88.28, category: "To'lov tashkiloti",
+  },
+  {
+    name: "SELLO SUPERAPP",
+    appId: "Sello (App Store)",
+    totalRaters: 499,
+    rating5: 428, rating4: 9, rating3: 14, rating2: 39, rating1: 9,
+    averageRating: 4.54, horizontalScore: 90.8, verticalScore: 0.45, verticalScorePercent: 9.07,
+    volumeValue: 0, totalValue: 0, lastMonthDownloads: 172_553, lastMonthRaters: 3, lastMonthReviews: 46,
+    activityScore: 60.75, finalScore: 53.54, category: "To'lov tashkiloti",
+  },
+];
+
+// ==================== Monthly data store ====================
 const monthlyGPData: Record<MonthKey, BankData[]> = {
   february: bankDataFeb,
   march: bankDataMar,
+  april: bankDataApr,
 };
 
 const monthlyASData: Record<MonthKey, AppStoreBankData[]> = {
   february: appStoreDataFeb,
   march: appStoreDataMar,
+  april: appStoreDataApr,
 };
 
 // Backward-compatible exports (default to latest month)
-export const bankData = bankDataMar;
-export const appStoreBankData = appStoreDataMar;
+export const bankData = bankDataApr;
+export const appStoreBankData = appStoreDataApr;
 
 export function getGPData(month: MonthKey): BankData[] {
   return monthlyGPData[month];
@@ -154,7 +437,7 @@ export interface CombinedBankScore {
   asData: AppStoreBankData | undefined;
 }
 
-export function getCombinedScores(month: MonthKey = "march"): CombinedBankScore[] {
+export function getCombinedScores(month: MonthKey = "april"): CombinedBankScore[] {
   const gpData = getGPData(month);
   const asData = getASData(month);
 
