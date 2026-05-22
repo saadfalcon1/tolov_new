@@ -33,7 +33,7 @@ export const DashboardHeader = ({ month }: { month: MonthKey }) => {
   const stats = [
     {
       icon: Building2,
-      label: "To'lov tashkilotlari soni",
+      label: "Faol tashkilotlar soni",
       value: combined.length.toString(),
       sub: null,
     },
