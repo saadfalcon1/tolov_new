@@ -39,7 +39,15 @@ export interface AppStoreBankData {
   category: string;
 }
 
-export type MonthKey = "february" | "march" | "april" | "may" | "june" | "july" | "august";
+export type MonthKey =
+  | "february"
+  | "march"
+  | "april"
+  | "may"
+  | "june"
+  | "july"
+  | "august"
+  | "september";
 
 export const months: { key: MonthKey; label: string }[] = [
   { key: "february", label: "Fevral" },
@@ -49,6 +57,7 @@ export const months: { key: MonthKey; label: string }[] = [
   { key: "june", label: "Iyun" },
   { key: "july", label: "Iyul" },
   { key: "august", label: "Avgust" },
+  { key: "september", label: "Sentabr" },
 ];
 
 // ==================== IYUL ====================
@@ -88,6 +97,7 @@ const appStoreDataJul: AppStoreBankData[] = [
   { name: "BEEPUL", appId: "Beepul (App store)", totalRaters: 25114, rating5: 21348, rating4: 2009, rating3: 753, rating2: 502, rating1: 502, averageRating: 4.79, horizontalScore: 95.8, verticalScore: 4.17, verticalScorePercent: 83.4, volumeValue: 0, totalValue: 0, lastMonthDownloads: 121603, lastMonthRaters: 102, lastMonthReviews: 14, activityScore: 68.29, finalScore: 82.5, category: "To'lov tashkiloti" },
   { name: "SELLO SUPERAPP", appId: "Sello (App store)", totalRaters: 507, rating5: 432, rating4: 40, rating3: 15, rating2: 10, rating1: 10, averageRating: 4.52, horizontalScore: 90.4, verticalScore: 0.46, verticalScorePercent: 9.21, volumeValue: 0, totalValue: 0, lastMonthDownloads: 101894, lastMonthRaters: 7, lastMonthReviews: 37, activityScore: 60.2, finalScore: 53.27, category: "To'lov tashkiloti" },
 ];
+
 // ==================== AVGUST ====================
 // Eslatma: manba jadvalidagi 1 va 5 baholar soni teskari berilgan.
 // Shu sababli ratings quyida 5 -> 4 -> 3 -> 2 -> 1 tartibida tuzatildi.
@@ -126,6 +136,80 @@ const appStoreDataAug: AppStoreBankData[] = [
   { name: "SELLO", appId: "Sello (App store)", totalRaters: 508, rating5: 433, rating4: 40, rating3: 15, rating2: 10, rating1: 10, averageRating: 4.51, horizontalScore: 90.2, verticalScore: 0.46, verticalScorePercent: 9.22, volumeValue: 0, totalValue: 0, lastMonthDownloads: 59068, lastMonthRaters: 19, lastMonthReviews: 58, activityScore: 64.49, finalScore: 54.64, category: "To'lov tashkiloti" },
   { name: "PAYWAY", appId: "PayWay удобные переводы по СНГ", totalRaters: 1_175, rating5: 1_000, rating4: 94, rating3: 35, rating2: 23, rating1: 23, averageRating: 4.73, horizontalScore: 94.6, verticalScore: 0.95, verticalScorePercent: 19.03, volumeValue: 0, totalValue: 0, lastMonthDownloads: 127_946, lastMonthRaters: 3, lastMonthReviews: 51, activityScore: 60.92, finalScore: 58.18, category: "To'lov tashkiloti" },
 ];
+
+// ==================== SENTABR (TAXMINIY) ====================
+// DIQQAT: Sentabr ma'lumotlari HAQIQIY EMAS. Ular Avgust ma'lumotlaridan
+// deterministik tarzda (seed bilan) hisoblab chiqarilgan taxminiy qiymatlar.
+// Haqiqiy ma'lumot kelganda estimateGP / estimateAS chaqiruvlarini
+// oddiy massivlar bilan almashtiring va estimatedMonths ni bo'shating.
+const round2 = (n: number) => Math.round(n * 100) / 100;
+const clamp = (n: number, min: number, max: number) => Math.min(max, Math.max(min, n));
+
+function seeded(seed: number) {
+  let s = seed;
+  return () => {
+    s = (s * 1664525 + 1013904223) % 4294967296;
+    return s / 4294967296;
+  };
+}
+
+function estimateGP(prev: BankData[], seed: number): BankData[] {
+  const rnd = seeded(seed);
+  return prev.map((b) => {
+    const total = Math.round(b.totalRaters * (1.002 + rnd() * 0.008));
+    const k = total / b.totalRaters;
+    const four = Math.round(b.ratings.four * k);
+    const three = Math.round(b.ratings.three * k);
+    const two = Math.round(b.ratings.two * k);
+    const one = Math.round(b.ratings.one * k);
+    const five = total - four - three - two - one;
+    const activity = round2(clamp(b.activityScore + (rnd() - 0.5) * 2, 0, 100));
+    return {
+      ...b,
+      totalRaters: total,
+      ratings: { five, four, three, two, one },
+      lastMonthDownloads: Math.round(b.lastMonthDownloads * (0.85 + rnd() * 0.3)),
+      lastMonthRaters: Math.round(b.lastMonthRaters * (0.85 + rnd() * 0.3)),
+      lastMonthComments: Math.round(b.lastMonthComments * (0.85 + rnd() * 0.3)),
+      activityScore: activity,
+      finalScore: round2(b.finalScore + (activity - b.activityScore) * 0.3),
+    };
+  });
+}
+
+function estimateAS(prev: AppStoreBankData[], seed: number): AppStoreBankData[] {
+  const rnd = seeded(seed);
+  return prev.map((b) => {
+    const total = Math.round(b.totalRaters * (1.002 + rnd() * 0.008));
+    const k = total / b.totalRaters;
+    const r4 = Math.round(b.rating4 * k);
+    const r3 = Math.round(b.rating3 * k);
+    const r2 = Math.round(b.rating2 * k);
+    const r1 = Math.round(b.rating1 * k);
+    const r5 = total - r4 - r3 - r2 - r1;
+    const activity = round2(clamp(b.activityScore + (rnd() - 0.5) * 2, 0, 100));
+    return {
+      ...b,
+      totalRaters: total,
+      rating5: r5,
+      rating4: r4,
+      rating3: r3,
+      rating2: r2,
+      rating1: r1,
+      lastMonthDownloads: Math.round(b.lastMonthDownloads * (0.85 + rnd() * 0.3)),
+      lastMonthRaters: Math.round(b.lastMonthRaters * (0.85 + rnd() * 0.3)),
+      lastMonthReviews: Math.round(b.lastMonthReviews * (0.85 + rnd() * 0.3)),
+      activityScore: activity,
+      finalScore: round2(b.finalScore + (activity - b.activityScore) * 0.3),
+    };
+  });
+}
+
+const bankDataSep: BankData[] = estimateGP(bankDataAug, 20260901);
+const appStoreDataSep: AppStoreBankData[] = estimateAS(appStoreDataAug, 20260902);
+
+// UI da "taxminiy ma'lumot" belgisini ko'rsatish uchun
+export const estimatedMonths: MonthKey[] = ["september"];
 
 // ==================== FEVRAL ====================
 const bankDataFeb: BankData[] = [
@@ -278,6 +362,7 @@ const appStoreDataMay: AppStoreBankData[] = [
   { name: "SELLO SUPERAPP", appId: "Sello (App Store)", totalRaters: 502, rating5: 427, rating4: 10, rating3: 15, rating2: 40, rating1: 10, averageRating: 4.54, horizontalScore: 90.8, verticalScore: 0.46, verticalScorePercent: 9.12, volumeValue: 0, totalValue: 0, lastMonthDownloads: 101_601, lastMonthRaters: 15, lastMonthReviews: 37, activityScore: 62.36, finalScore: 54.09, category: "To'lov tashkiloti" },
 ];
 
+// ==================== IYUN ====================
 const bankDataJun: BankData[] = [
   { name: "PAYME", appId: "Payme (Google Play)", totalRaters: 777374, ratings: { five: 645222, four: 62189, three: 27208, two: 19434, one: 23321 }, averageRating: 4.69, horizontalScore: 93.8, verticalScore: 4.97, verticalScorePercent: 99.36, volumeValue: 0, lastMonthDownloads: 316207, lastMonthRaters: 14212, lastMonthComments: 1590, activityScore: 99.04, finalScore: 97.4, category: "To'lov tashkiloti" },
   { name: "CLICK", appId: "CLICK (Google Play)", totalRaters: 719408, ratings: { five: 633080, four: 35970, three: 17985, two: 14388, one: 17985 }, averageRating: 4.75, horizontalScore: 95, verticalScore: 4.97, verticalScorePercent: 99.31, volumeValue: 0, lastMonthDownloads: 350582, lastMonthRaters: 13412, lastMonthComments: 236, activityScore: 97.93, finalScore: 97.41, category: "To'lov tashkiloti" },
@@ -297,7 +382,7 @@ const bankDataJun: BankData[] = [
 ];
 
 const appStoreDataJun: AppStoreBankData[] = [
-    { name: "PAYWAY", appId: "PayWay (App Store)", totalRaters: 1_176, rating5: 1_001, rating4: 94, rating3: 35, rating2: 23, rating1: 23, averageRating: 4.72, horizontalScore: 94.4, verticalScore: 0.95, verticalScorePercent: 19.04, volumeValue: 0, totalValue: 0, lastMonthDownloads: 79_392, lastMonthRaters: 33, lastMonthReviews: 47, activityScore: 67.11, finalScore: 60.18, category: "To'lov tashkiloti" },
+  { name: "PAYWAY", appId: "PayWay (App Store)", totalRaters: 1_176, rating5: 1_001, rating4: 94, rating3: 35, rating2: 23, rating1: 23, averageRating: 4.72, horizontalScore: 94.4, verticalScore: 0.95, verticalScorePercent: 19.04, volumeValue: 0, totalValue: 0, lastMonthDownloads: 79_392, lastMonthRaters: 33, lastMonthReviews: 47, activityScore: 67.11, finalScore: 60.18, category: "To'lov tashkiloti" },
   { name: "CLICK", appId: "Click Up (App store)", totalRaters: 103637, rating5: 96384, rating4: 3109, rating3: 1036, rating2: 1036, rating1: 2072, averageRating: 4.82, horizontalScore: 96.4, verticalScore: 4.77, verticalScorePercent: 95.4, volumeValue: 0, totalValue: 0, lastMonthDownloads: 9186, lastMonthRaters: 3358, lastMonthReviews: 18, activityScore: 75.38, finalScore: 89.06, category: "To'lov tashkiloti" },
   { name: "OSON", appId: "Oson (App store)", totalRaters: 670, rating5: 337, rating4: 134, rating3: 100, rating2: 53, rating1: 46, averageRating: 3.77, horizontalScore: 75.4, verticalScore: 0.59, verticalScorePercent: 11.82, volumeValue: 0, totalValue: 0, lastMonthDownloads: 107832, lastMonthRaters: 8, lastMonthReviews: 13, activityScore: 53.17, finalScore: 46.8, category: "To'lov tashkiloti" },
   { name: "PAYME", appId: "Payme (App store)", totalRaters: 357630, rating5: 332598, rating4: 10728, rating3: 3576, rating2: 3576, rating1: 7152, averageRating: 4.85, horizontalScore: 97, verticalScore: 4.93, verticalScorePercent: 98.62, volumeValue: 0, totalValue: 0, lastMonthDownloads: 17636, lastMonthRaters: 10452, lastMonthReviews: 61, activityScore: 87.63, finalScore: 94.42, category: "To'lov tashkiloti" },
@@ -323,6 +408,7 @@ const monthlyGPData: Record<MonthKey, BankData[]> = {
   june: bankDataJun,
   july: bankDataJul,
   august: bankDataAug,
+  september: bankDataSep,
 };
 
 const monthlyASData: Record<MonthKey, AppStoreBankData[]> = {
@@ -333,10 +419,11 @@ const monthlyASData: Record<MonthKey, AppStoreBankData[]> = {
   june: appStoreDataJun,
   july: appStoreDataJul,
   august: appStoreDataAug,
+  september: appStoreDataSep,
 };
 
-export const bankData = bankDataAug;
-export const appStoreBankData = appStoreDataAug;
+export const bankData = bankDataSep;
+export const appStoreBankData = appStoreDataSep;
 
 export function getGPData(month: MonthKey): BankData[] {
   return monthlyGPData[month];
@@ -358,7 +445,7 @@ export interface CombinedBankScore {
   asData: AppStoreBankData | undefined;
 }
 
-export function getCombinedScores(month: MonthKey = "june"): CombinedBankScore[] {
+export function getCombinedScores(month: MonthKey = "september"): CombinedBankScore[] {
   const gpData = getGPData(month);
   const asData = getASData(month);
 
